@@ -62,7 +62,7 @@ export const SERVICES = [
   {
     name: 'Custom Coffee Blends',
     slug: 'custom-coffee-blends',
-    shortDesc: 'Build your signature blend. We work with you to create a coffee that's uniquely yours.',
+    shortDesc: "Build your signature blend. We work with you to create a coffee that's uniquely yours.",
     icon: 'FlaskConical',
   },
   {
