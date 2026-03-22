@@ -6,30 +6,31 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react'
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/mdx'
 import { SITE_CONFIG } from '@/constants'
-import { articleSchema, breadcrumbSchema } from '@/lib/structured-data'
+import { articleSchema } from '@/lib/structured-data'
 import { formatDate } from '@/lib/utils'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import BlogCard from '@/components/blog/BlogCard'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 
-interface Props { params: { slug: string } }
+interface Props { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   try {
-    const { frontmatter: post } = await getPostBySlug(params.slug)
+    const { frontmatter: post } = await getPostBySlug(slug)
     return {
       title: post.title,
       description: post.excerpt,
-      alternates: { canonical: `${SITE_CONFIG.url}/blog/${params.slug}` },
+      alternates: { canonical: `${SITE_CONFIG.url}/blog/${slug}` },
       openGraph: {
         type: 'article',
         title: post.title,
         description: post.excerpt,
-        url: `${SITE_CONFIG.url}/blog/${params.slug}`,
+        url: `${SITE_CONFIG.url}/blog/${slug}`,
         publishedTime: post.date,
         authors: [post.author],
         images: [{ url: post.ogImage || `${SITE_CONFIG.url}/og/og-blog.jpg`, width: 1200, height: 630 }],
@@ -47,13 +48,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params
+
   let data
-  try { data = await getPostBySlug(params.slug) }
+  try { data = await getPostBySlug(slug) }
   catch { notFound() }
 
   const { frontmatter: post, content } = data
-  const related = getRelatedPosts(params.slug, post.tags || [], 3)
-  const schema = articleSchema({ ...post, slug: params.slug })
+  const related = getRelatedPosts(slug, post.tags || [], 3)
+  const schema = articleSchema({ ...post, slug })
 
   return (
     <div className="min-h-screen pt-24">
@@ -86,7 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
           <Breadcrumb items={[
             { label: 'Home', href: '/' },
             { label: 'Blog', href: '/blog' },
-            { label: post.title, href: `/blog/${params.slug}` },
+            { label: post.title, href: `/blog/${slug}` },
           ]} />
 
           {/* Meta */}
