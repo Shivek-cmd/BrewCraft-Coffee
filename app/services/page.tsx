@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Droplets, Coffee, RefreshCw, Store, FlaskConical, Building2 } from 'lucide-react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
@@ -75,10 +76,12 @@ export default function ServicesPage() {
                     <div className="relative aspect-[16/9] overflow-hidden">
                       {detail && (
                         <>
-                          <img
+                          <Image
                             src={detail.image}
                             alt={service.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-bg/80 to-transparent" />
                         </>
