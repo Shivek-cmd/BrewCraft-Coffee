@@ -31,7 +31,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 border border-border bg-bg-elevated/60 backdrop-blur-sm text-accent text-xs uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
@@ -42,7 +42,7 @@ export default function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.1 }}
           className="font-display font-light text-text mb-6 max-w-4xl"
         >
           Not Just Coffee.
@@ -54,7 +54,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.7, delay: 0.2 }}
           className="text-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
         >
           Experience the art of coffee like never before. BrewCraft delivers bold flavors, smooth textures, and a premium coffee ritual designed for your everyday lifestyle.
@@ -116,7 +116,7 @@ export default function Hero() {
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
           <ChevronDown className="w-5 h-5 text-subtle" />
         </motion.div>

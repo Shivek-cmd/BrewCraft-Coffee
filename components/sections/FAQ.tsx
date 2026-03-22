@@ -64,7 +64,7 @@ export default function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        transition={{ duration: 0.35 }}
                         className="overflow-hidden"
                       >
                         <p className="text-muted text-sm leading-relaxed pt-4 max-w-prose">
