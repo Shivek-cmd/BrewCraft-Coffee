@@ -27,7 +27,7 @@ export default function AnimatedSection({ children, delay = 0, className, direct
       ref={ref}
       initial={{ opacity: 0, ...dirMap[direction] }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay, ease: "easeOut" }}
       className={cn(className)}
     >
       {children}
