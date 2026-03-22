@@ -6,7 +6,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection'
 import { SERVICES } from '@/constants'
 
 const iconMap: Record<string, React.ElementType> = {
-  Droplets, Coffee, RefreshCw, Store, Beaker: FlaskConical, Building2,
+  Droplets, Coffee, RefreshCw, Store, FlaskConical, Building2,
 }
 
 const container = {
